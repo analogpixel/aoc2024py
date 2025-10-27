@@ -23,13 +23,13 @@ for x in range(0,width):
 
 print("Part 1:", count)
 
+VALID = {"MAS", "SAM"}
 count=0
 for x in range(0,width):
     for y in range(0, height):
         s1 = get_direction(x-1, y-1, 1,1, 3) 
         s2 = get_direction(x-1, y+1, 1, -1, 3) 
-        if s1 == "MAS" or s1 == "SAM":
-            if s2 == "MAS" or s2 == "SAM":
+        if s1 in VALID and s2 in VALID:
                 count +=1
 
 print("Part 2:", count)
