@@ -1,13 +1,16 @@
+RULE_DELIMITER = "|"
+PAGE_DELIMITER = ","
+DATA_FILE = "data/5.txt"
+#DATA_FILE = "data/5_demo.txt"
 
 rules = []
 pages = []
 #for line in open("data/5_demo.txt").readlines():
-for line in open("data/5.txt").readlines():
-    if "|" in line:
+for line in open(DATA_FILE).readlines():
+    if RULE_DELIMITER in line:
         rules.append( tuple(map(int, line.strip().split('|'))))
-    elif "," in line:
+    elif PAGE_DELIMITER in line:
         pages.append( list(map(int, line.strip().split(','))))
-       
 
 def apply_rules(rules, page):
     changed=True
@@ -34,7 +37,7 @@ total_part_1=0
 total_part_2=0
 for p in pages:
     sorted_pages, change_count = apply_rules(rules, p)
-    mid = int(len(p) / 2)
+    mid = len(p) // 2
     if change_count == 0:
         total_part_1 += p[mid]  
     else:
